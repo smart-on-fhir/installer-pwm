@@ -1,0 +1,29 @@
+---
+
+# *** Main configuration file for the PWM Installer ***
+
+# You can either edit the settings directly in this file or set up custom
+# settings overrides (such as custom_settings.yml)
+
+# The user accunt that will host the servers. If a user account of this name
+# already exists on the system, the installer will not alter its credentials or
+# authentication mechanism
+username: pwm
+userpass: secretpass
+install_dir: "/home/{{username}}"
+
+# Settigs for Oracle Java. You probably won't have to alter this
+# unles you are switching to a different version of Java
+java_home_dir: "/usr/lib/jvm/java-7-oracle"
+
+# LDAP server high-level configuration
+ldap_server_host: "ldap.smartplatforms.org"
+ldap_server_base: "dc=smartplatforms,dc=org"
+ldap_server_uri: "ldap://{{ldap_server_host}}:389"
+ldap_server_admin_password: "/***********************=="
+
+pwm_config_password_hash: "*****************************"
+
+# Download URLs
+pwm_download_url: "https://www.dropbox.com/s/gehtr2jgbr4s8wt/pwm_v1.7.1.zip?dl=1"
+mysql_connector_java_url: "http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-3.0.17-ga.tar.gz"

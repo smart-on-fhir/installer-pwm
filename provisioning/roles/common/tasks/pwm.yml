@@ -1,0 +1,65 @@
+- name: stop tomcat server
+  service: name=tomcat7 state=stopped
+        
+- name: download pwm
+  sudo_user: "{{username}}"
+  get_url: 
+          url={{pwm_download_url}}
+          dest={{install_dir}}/pwm.zip
+
+- name: unzip pwm
+  sudo_user: "{{username}}"
+  shell: chdir={{install_dir}}
+         unzip -o pwm.zip -d pwm
+
+- name: deploy pwm on tomcat
+  shell: chdir="{{install_dir}}"
+             cp -f pwm/pwm.war /var/lib/tomcat7/webapps
+      
+- name: crate mysql db
+  mysql_db: name=pwm state=present
+  
+- name: crate mysql user
+  mysql_user: name=pwm password= priv=pwm.*:ALL state=present
+
+- name: restart tomcat
+  service: name=tomcat7 state=restarted
+
+- name: wait for tomcat to become available
+  wait_for: port=8080
+
+- name: download mysql connector for java
+  sudo_user: "{{username}}"
+  get_url: 
+          url={{mysql_connector_java_url}}
+          dest={{install_dir}}/mysql-connector-java.tar.gz
+
+- name: unzip mysql connector for java
+  sudo_user: "{{username}}"
+  shell: chdir={{install_dir}}
+         tar -xzvf mysql-connector-java.tar.gz
+  
+- name: deploy mysql connector for java on tomcat
+  shell: chdir="{{install_dir}}"
+             cp -f mysql-connector-java-3.0.17-ga/mysql-connector-java-3.0.17-ga-bin.jar /var/lib/tomcat7/webapps/pwm/WEB-INF/lib/mysql-connector-java.jar
+
+- name: configure pwm
+  template: src=PwmConfiguration.xml dest=/var/lib/tomcat7/webapps/pwm/WEB-INF/PwmConfiguration.xml owner=tomcat7 group=tomcat7 mode=0644
+  
+- name: remove tomcat root app
+  shell: chdir="/var/lib/tomcat7/webapps"
+         rm -rf ROOT
+         
+- name: make pwn root app
+  shell: chdir="/var/lib/tomcat7/webapps"
+         ln -s pwm ROOT
+
+- name: restart tomcat
+  service: name=tomcat7 state=restarted
+
+#- name: install pwm ldap schema
+#  copy: src=cn={4}pwm.ldif
+#        dest=/etc/ldap/slapd.d/cn=config/cn=schema/cn={4}pwm.ldif
+
+#- name: restart slapd
+#  service: name=slapd state=restarted

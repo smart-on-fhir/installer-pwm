@@ -1,0 +1,47 @@
+- name: create group
+  group: name="{{username}}"
+
+- name: create user
+  user: name="{{username}}" password="{{userpass}}" update_password="on_create"
+        group="{{username}}" groups=sudo
+        shell=/bin/bash
+
+- name: add PPA repos
+  apt_repository: repo={{item}}
+  with_items: ['ppa:webupd8team/java']
+
+- name: update aptitude cache
+  apt: update_cache=yes
+
+- name: upgrade server packages
+  apt: upgrade=full
+  
+- name: automatically select the mysql configuration settings
+  shell: /bin/echo "mysql-server-5.5 {{item}}" | sudo debconf-set-selections
+  with_items:
+         - mysql-server/root_password password 
+         - mysql-server/root_password_again password 
+
+- name: automatically select the Oracle License
+  shell: /bin/echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+         
+- name: install prerequisite packages
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  apt: pkg={{item}} force=yes
+  with_items:
+         - tomcat7
+         - unzip
+         - mysql-server
+         - php5-mysql
+         - oracle-java7-installer
+         - python-mysqldb
+         - exim4
+
+- name: set global JAVA_HOME
+  lineinfile: dest=/etc/environment
+              state=present
+              regexp='^JAVA_HOME'
+              line='JAVA_HOME={{java_home_dir}}'
+ 
+- include: pwm.yml
