@@ -17,7 +17,7 @@ install_dir: "/home/{{username}}"
 java_home_dir: "/usr/lib/jvm/java-7-oracle"
 
 # LDAP server high-level configuration
-ldap_server_host: "ldap.smartplatforms.org"
+ldap_server_host: "ldap.smarthealthit.org"
 ldap_server_base: "dc=smartplatforms,dc=org"
 ldap_server_uri: "ldap://{{ldap_server_host}}:389"
 ldap_server_admin_password: "/***********************=="
