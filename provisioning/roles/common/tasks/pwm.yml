@@ -46,6 +46,14 @@
 - name: configure pwm
   template: src=PwmConfiguration.xml dest=/var/lib/tomcat7/webapps/pwm/WEB-INF/PwmConfiguration.xml owner=tomcat7 group=tomcat7 mode=0644
   
+- name: copy custom style
+  copy: src=themes/custom/style.css
+        dest=/var/lib/tomcat7/webapps/pwm/public/resources/themes/autumn/style.css
+        
+- name: copy custom mobile style
+  copy: src=themes/custom/mobileStyle.css
+        dest=/var/lib/tomcat7/webapps/pwm/public/resources/themes/autumn/mobileStyle.css
+  
 - name: remove tomcat root app
   shell: chdir="/var/lib/tomcat7/webapps"
          rm -rf ROOT

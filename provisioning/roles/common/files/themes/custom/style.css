@@ -1,0 +1,172 @@
+html {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: White;
+}
+
+#centerbody {
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    min-height: 20px;
+    padding: 19px;
+}
+
+#header {
+   background-color: #fafafa;
+   background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+   width: 100%;
+   height: 70px;
+   margin: 0;
+}
+
+#header, #header-page, #header-title {
+    color: #777777;
+}
+
+#header-company-logo img {
+   max-height: 35px;
+}
+
+body {
+   min-width: 840px;
+}
+
+#footer {
+    background-color: #f5f5f5;
+}
+
+input.btn, button.btn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #f5f5f5;
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #b3b3b3;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+input.btn:hover, input.btn:focus, input.btn:active, input.btn.active, input.btn.disabled, input.btn[disabled], button.btn:hover, button.btn:focus, button.btn:active, button.btn.active, button.btn.disabled, button.btn[disabled] {
+    background-color: #e6e6e6;
+    color: #333333;
+}
+
+input.btn:hover, input.btn:focus, button.btn:hover, button.btn:focus {
+    background-position: 0 -15px;
+    color: #333333;
+    text-decoration: none;
+    transition: background-position 0.1s linear 0s;
+}
+
+input.btn:focus, button.btn:focus {
+    outline: thin dotted #333;
+    outline-offset: -2px;
+}
+
+input.btn.active, input.btn:active, button.btn.active, button.btn:active {
+    background-image: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: 0 none;
+}
+
+input.btn.disabled, input.btn[disabled], button.btn.disabled, button.btn[disabled] {
+    background-image: none;
+    box-shadow: none;
+    cursor: default;
+    opacity: 0.65;
+}
+
+p {
+    color: black;
+}
+
+#header-warning {
+    width: 100%;
+    background-color: white;
+    color: #0a0a0a;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+#header-company-logo {
+    position: relative;
+    float: left;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+}
+
+a {
+    color: #330033;
+    text-decoration: underline;
+    font-weight: bold
+}
+
+
+.message {
+    background-color: inherit;
+}
+
+.message-info {
+    background-color: #ffcccc;
+}
+
+.message-error {
+    background-color: #00cccc;
+}
+
+.message-success {
+    background-color: #ff9933;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid #ffcccc;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto
+}
+
+table td {
+    border: 2px solid #ffcccc;
+    padding-left: 5px;
+}
+
+table td.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 150%;
+    padding-right: 10px;
+    background-color: white;
+}
+
+table td.key {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 10px;
+    width: 200px;
+}
